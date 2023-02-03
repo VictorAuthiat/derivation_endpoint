@@ -16,7 +16,16 @@ If bundler is not being used to manage dependencies, install the gem by executin
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+DerivationEndpoint.configure do |config|
+  config.host    = "http://localhost:3002"
+  config.prefix  = "derivation_endpoints"
+  config.encoder = ->(method_value) { method_value.id.to_s }
+  config.decoder = ->(path, options) do
+    Shrine::UploadedFile.new(id: path, storage: options[:storage]).url
+  end
+end
+```
 
 ## Development
 
