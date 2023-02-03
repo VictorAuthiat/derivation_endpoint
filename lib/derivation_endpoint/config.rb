@@ -2,19 +2,25 @@
 
 module DerivationEndpoint
   class Config
-    DEFAULT_PREFIX = "derivation_endpoints".freeze
+    REQUIRED_ATTRIBUTES = [:host, :prefix, :encoder, :decoder]
 
-    attr_reader :host, :encoder, :decoder
+    def self.valid?(config)
+      Validation.check_object_class(config, [self])
+
+      REQUIRED_ATTRIBUTES.all? { |attribute| !!(config.public_send(attribute)) }
+    end
+
+    attr_reader :host, :prefix, :encoder, :decoder
 
     def initialize
       @host    = nil
       @prefix  = nil
-
-      @encoder, @decoder = proc {}
+      @encoder = nil
+      @decoder = nil
     end
 
-    def prefix
-      @prefix || DEFAULT_PREFIX
+    def valid?
+      self.class.valid?(self)
     end
 
     def host=(value)

@@ -10,6 +10,10 @@ module DerivationEndpoint
   autoload :Derivation, "derivation_endpoint/derivation"
 
   class << self
+    def extended(base)
+      base.include(DerivationEndpoint::Attachment)
+    end
+
     def configure
       yield config if block_given?
     end
@@ -18,20 +22,16 @@ module DerivationEndpoint
       @_config ||= Config.new
     end
 
-    def host
-      config.host
-    end
-
-    def prefix
-      config.prefix
-    end
-
     def derivation_path
-      "/#{prefix}"
+      return unless config.valid?
+
+      "/#{config.prefix}"
     end
 
     def base_url
-      host + derivation_path
+      return unless config.valid?
+
+      config.host + derivation_path
     end
   end
 end

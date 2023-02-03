@@ -11,6 +11,6 @@ gem "rspec", "~> 3.0"
 
 gem "rubocop", "~> 1.21"
 
-gem "rack", ">= 3"
+gem "rack", "~> 3.0.4.1"
 
-gem "pry"
+gem "simplecov", "~> 0.22.0"

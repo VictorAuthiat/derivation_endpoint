@@ -5,7 +5,6 @@ module DerivationEndpoint
     attr_reader :object, :method, :prefix, :options
 
     def initialize(object, method, prefix, options)
-      Validation.check_object_responds(object, method)
       Validation.check_object_class(prefix, [String, Symbol, NilClass])
       Validation.check_object_class(options, [Hash, NilClass])
 
@@ -15,18 +14,15 @@ module DerivationEndpoint
       @options = options
     end
 
-    def base_url
-      url = DerivationEndpoint.base_url
-
-      prefix ? "#{url}/#{prefix}" : url
-    end
-
     def method_value
       object.public_send(method)
     end
 
     def derivation_url
-      "#{base_url}/#{derivation_path}"
+      base_url  = DerivationEndpoint.base_url
+      final_url = prefix ? "#{base_url}/#{prefix}" : base_url
+
+      "#{final_url}/#{derivation_path}"
     end
 
     def derivation_path

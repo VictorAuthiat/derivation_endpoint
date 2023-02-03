@@ -2,7 +2,7 @@
 
 module DerivationEndpoint
   class Derivation
-    def self.endpoint_url(params)
+    def self.decode(params)
       DerivationEndpoint.config.decoder.call(params)
     end
 
@@ -27,9 +27,7 @@ module DerivationEndpoint
     end
 
     def render_success(params)
-      location = self.class.endpoint_url(params)
-
-      [302, { "Location" => location }, []]
+      [302, { "Location" => self.class.decode(params) }, []]
     end
 
     def render_error(status, message)
