@@ -1,6 +1,6 @@
 ### Shrine example
 
-*Create initializer*
+**Create initializer**
 
 ```ruby
 DerivationEndpoint.configure do |config|
@@ -11,13 +11,13 @@ DerivationEndpoint.configure do |config|
 end
 ```
 
-*2 Mount derivation endpoint.*
+**Mount derivation endpoint.**
 
 ```ruby
 mount DerivationEndpoint::Derivation.new => DerivationEndpoint.derivation_path
 ```
 
-*3 Update model*
+**Update model**
 
 ```ruby
 class Post < ApplicationRecord
