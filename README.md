@@ -38,12 +38,14 @@ end
 ```
 
 **Mount the endpoint**
+
 ```ruby
 mount DerivationEndpoint::Derivation.new => DerivationEndpoint.derivation_path
 ```
 
 **Add a derivation endpoint**
-```
+
+```ruby
 class Post < ApplicationRecord
   extend DerivationEndpoint
 
