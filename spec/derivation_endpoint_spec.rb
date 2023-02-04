@@ -62,7 +62,6 @@ RSpec.describe DerivationEndpoint do
     end
   end
 
-
   describe ".base_url" do
     subject { described_class.base_url }
 

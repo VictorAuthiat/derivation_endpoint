@@ -182,7 +182,7 @@ RSpec.describe DerivationEndpoint::Attacher do
 
       let(:decoder)         { ->(foo) { { foo: foo } } }
       let(:method_value)    { "foo" }
-      let(:derivation_path) { attacher.derivation_path}
+      let(:derivation_path) { attacher.derivation_path }
 
       it "calls config proc decoder with method value" do
         expect(DerivationEndpoint.config.decoder).to receive(:call).with(derivation_path, options)

@@ -91,7 +91,7 @@ RSpec.describe DerivationEndpoint::Attachment do
     let(:options) { { baz: :buz } }
 
     DerivationEndpoint::Attachment::ClassMethods::ATTACHER_DERIVATION_METHODS.each do |attacher_method|
-      describe "#{attacher_method}" do
+      describe "##{attacher_method}" do
         let(:attacher_method) { attacher_method }
 
         it "instanciates attacher with given params and call method on it", aggregate_failures: true do
