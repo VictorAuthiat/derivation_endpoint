@@ -1,4 +1,6 @@
-### CarrierWave example
+## CarrierWave example
+
+### carrierwave-aws
 
 **Create initializer**
 
@@ -34,3 +36,12 @@ class Post < ApplicationRecord
   derivation_endpoint :file, options: { uploader: FileUploader }
 end
 ```
+
+### Fog [coming soon]
+  - AWS
+  - Google
+  - Rackspace
+  - OpenStack
+  - AzureRM
+
+### File [coming soon]

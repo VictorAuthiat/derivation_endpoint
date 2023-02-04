@@ -1,4 +1,4 @@
-### Shrine example
+## Shrine example
 
 **Create initializer**
 
