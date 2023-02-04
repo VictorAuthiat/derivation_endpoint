@@ -2,12 +2,12 @@
 
 module DerivationEndpoint
   class Config
-    REQUIRED_ATTRIBUTES = [:host, :prefix, :encoder, :decoder]
+    REQUIRED_ATTRIBUTES = [:host, :prefix, :encoder, :decoder].freeze
 
     def self.valid?(config)
       Validation.check_object_class(config, [self])
 
-      REQUIRED_ATTRIBUTES.all? { |attribute| !!(config.public_send(attribute)) }
+      REQUIRED_ATTRIBUTES.all? { |attribute| !!config.public_send(attribute) }
     end
 
     attr_reader :host, :prefix, :encoder, :decoder
