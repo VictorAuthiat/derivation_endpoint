@@ -1,4 +1,3 @@
-Not deployed yet.
 # DerivationEndpoint
 
 [![Build Status](https://github.com/VictorAuthiat/derivation_endpoint/actions/workflows/ci.yml/badge.svg)](https://github.com/VictorAuthiat/derivation_endpoint/actions/workflows/ci.yml)
