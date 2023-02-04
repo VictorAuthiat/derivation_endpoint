@@ -33,8 +33,4 @@ Gem::Specification.new do |spec|
   # guide at: https://bundler.io/guides/creating_gem.html
 
   spec.add_development_dependency "bundler"
-  spec.add_development_dependency "rack"
-  spec.add_development_dependency "rake"
-  spec.add_development_dependency "rspec"
-  spec.add_development_dependency "simplecov"
 end
