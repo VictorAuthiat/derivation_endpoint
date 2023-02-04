@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email   = ["authiatv@gmail.com"]
 
   spec.summary     = "Derivation endpoint"
-  spec.description = "Derivation endpoint"
+  spec.description = "Redirect from an url to another using custom strategies"
   spec.homepage    = "https://github.com/victorauthiat/derivation_endpoint"
   spec.license     = "MIT"
 
