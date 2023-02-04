@@ -8,6 +8,7 @@ module DerivationEndpoint
   autoload :Attacher,   "derivation_endpoint/attacher"
   autoload :Attachment, "derivation_endpoint/attachment"
   autoload :Derivation, "derivation_endpoint/derivation"
+  autoload :Serializer, "derivation_endpoint/serializer"
 
   class << self
     def extended(base)

@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require "base64"
+require "json"
+
 module DerivationEndpoint
   class Attacher
     attr_reader :object, :method, :prefix, :options
@@ -15,7 +18,7 @@ module DerivationEndpoint
     end
 
     def derivation_path
-      DerivationEndpoint.config.encoder.call(method_value)
+      DerivationEndpoint::Serializer.encode(serialization_params)
     end
 
     def redirection_url
@@ -31,6 +34,15 @@ module DerivationEndpoint
       final_url = prefix ? "#{base_url}/#{prefix}" : base_url
 
       "#{final_url}/#{derivation_path}"
+    end
+
+    private
+
+    def serialization_params
+      {
+        path: DerivationEndpoint.config.encoder.call(method_value),
+        options: options
+      }
     end
   end
 end

@@ -4,8 +4,14 @@ require "rack"
 
 module DerivationEndpoint
   class Derivation
-    def self.decode(params)
-      DerivationEndpoint.config.decoder.call(params)
+    class << self
+      def decode(params)
+        decoded_data = DerivationEndpoint::Serializer.decode(params)
+        path         = decoded_data["path"]
+        options      = decoded_data["options"].transform_keys(&:to_sym)
+
+        DerivationEndpoint.config.decoder.call(path, options)
+      end
     end
 
     def call(env)

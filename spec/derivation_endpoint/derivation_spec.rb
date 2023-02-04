@@ -20,10 +20,12 @@ RSpec.describe DerivationEndpoint::Derivation do
   describe ".decode" do
     subject { described_class.decode(params) }
 
-    let(:params) { { foo: :bar } }
+    let(:params) { DerivationEndpoint::Serializer.encode({ path: path, options: options }) }
+    let(:path)    { "foo" }
+    let(:options) { { bar: "baz" } }
 
-    it "calls decoder proc with given params" do
-      expect(decoder).to receive(:call).with(params)
+    it "calls decoder proc with path and options" do
+      expect(decoder).to receive(:call).with(path, options)
       subject
     end
   end
@@ -78,8 +80,10 @@ RSpec.describe DerivationEndpoint::Derivation do
         end
 
         context "with path info" do
-          let(:path_info)    { "foo/bar/baz" }
-          let(:decoded_path) { DerivationEndpoint.config.decoder.call("baz") }
+          let(:path)         { "foo" }
+          let(:options)      { { bar: "baz" } }
+          let(:path_info)    { DerivationEndpoint::Serializer.encode({ path: path, options: options }) }
+          let(:decoded_path) { DerivationEndpoint.config.decoder.call(path, options) }
 
           it "decodes last path info and redirect to the result", aggregate_failures: true do
             expect(subject[0]).to eq(302)
