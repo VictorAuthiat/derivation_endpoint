@@ -17,7 +17,7 @@ DerivationEndpoint.configure do |config|
 end
 ```
 
-**Mount derivation endpoint.**
+**Mount derivation endpoint**
 
 ```ruby
 mount DerivationEndpoint::Derivation.new => DerivationEndpoint.derivation_path
