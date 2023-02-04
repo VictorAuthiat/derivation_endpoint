@@ -2,8 +2,8 @@
 
 [![Build Status](https://github.com/VictorAuthiat/derivation_endpoint/actions/workflows/ci.yml/badge.svg)](https://github.com/VictorAuthiat/derivation_endpoint/actions/workflows/ci.yml)
 
-DerivationEndpoint is a gem that provides a Rack app to redirect from an url to another using custom strategies.
-This can be useful when you want to for example expose private files with a public URL.
+DerivationEndpoint is a gem that provides a Rack app to redirect from an endpoint to another using custom strategies.
+This can be useful when you want to expose private files with a public URL.
 
 ## Installation
 
