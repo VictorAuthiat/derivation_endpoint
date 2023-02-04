@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "rack"
+
 module DerivationEndpoint
   class Derivation
     def self.decode(params)

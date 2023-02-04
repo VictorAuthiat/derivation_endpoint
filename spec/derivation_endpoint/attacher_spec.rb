@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "spec_helper"
+
 RSpec.describe DerivationEndpoint::Attacher do
   let(:attacher) { described_class.new(object, method, prefix, options) }
 

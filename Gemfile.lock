@@ -2,7 +2,6 @@ PATH
   remote: .
   specs:
     derivation_endpoint (0.1.0)
-      rack
 
 GEM
   remote: https://rubygems.org/

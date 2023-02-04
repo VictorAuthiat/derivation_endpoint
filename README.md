@@ -1,29 +1,82 @@
+Not deployed yet.
 # DerivationEndpoint
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/derivation_endpoint`. To experiment with that code, run `bin/console` for an interactive prompt.
+[![Gem Version](https://badge.fury.io/rb/derivation_endpoint.svg)](https://badge.fury.io/rb/derivation_endpoint)
+[![Build Status](https://github.com/VictorAuthiat/derivation_endpoint/actions/workflows/ci.yml/badge.svg)](https://github.com/VictorAuthiat/derivation_endpoint/actions/workflows/ci.yml)
+[![Code Climate](https://codeclimate.com/github/VictorAuthiat/derivation_endpoint/badges/gpa.svg)](https://codeclimate.com/github/VictorAuthiat/derivation_endpoint)
+[![Test Coverage](https://codeclimate.com/github/VictorAuthiat/derivation_endpoint/badges/coverage.svg)](https://codeclimate.com/github/VictorAuthiat/derivation_endpoint/coverage)
+[![Issue Count](https://codeclimate.com/github/VictorAuthiat/derivation_endpoint/badges/issue_count.svg)](https://codeclimate.com/github/VictorAuthiat/derivation_endpoint)
 
-TODO: Delete this and the text above, and describe your gem
+DerivationEndpoint is a gem that provides a Rack app to redirect from an url to another using custom strategies.
+This can be useful when you want to for example expose private files with a public URL.
 
 ## Installation
 
-Install the gem and add to the application's Gemfile by executing:
+Add this line to your application's Gemfile:
 
-    $ bundle add derivation_endpoint
+```ruby
+gem "derivation_endpoint"
+```
 
-If bundler is not being used to manage dependencies, install the gem by executing:
+And then execute:
+
+    $ bundle install
+
+Or install it yourself as:
 
     $ gem install derivation_endpoint
 
 ## Usage
 
+Initializer example with Shrine
 ```ruby
 DerivationEndpoint.configure do |config|
-  config.host    = "http://localhost:3002"
+  config.host    = "http://localhost:3000"
   config.prefix  = "derivation_endpoints"
-  config.encoder = ->(method_value) { method_value.id.to_s }
-  config.decoder = ->(path, options) do
-    Shrine::UploadedFile.new(id: path, storage: options[:storage]).url
-  end
+  config.encoder = ->(method_value) { method_value.id }
+  config.decoder = ->(path, options) { Shrine::UploadedFile.new(id: path, storage: options[:storage]).url }
+end
+```
+
+Initializer example with CarrierWave:
+```ruby
+DerivationEndpoint.configure do |config|
+  ...
+end
+```
+
+Initializer example with Paperclip
+```ruby
+DerivationEndpoint.configure do |config|
+  ...
+end
+```
+
+Initializer example with ActiveStorage
+```ruby
+DerivationEndpoint.configure do |config|
+  ...
+end
+```
+
+Initializer example with Refile
+```ruby
+DerivationEndpoint.configure do |config|
+  ...
+end
+```
+
+*Routes:*
+```ruby
+mount DerivationEndpoint::Derivation.new => DerivationEndpoint.derivation_path
+```
+
+*Model:*
+```ruby
+class Post < ApplicationRecord
+  extend DerivationEndpoint
+
+  derivation_endpoint :file, prefix: "files", options: { storage: :store }
 end
 ```
 
@@ -35,7 +88,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/derivation_endpoint. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/derivation_endpoint/blob/master/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at https://github.com/victorauthiat/derivation_endpoint. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/victorauthiat/derivation_endpoint/blob/master/CODE_OF_CONDUCT.md).
 
 ## License
 
@@ -43,4 +96,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the DerivationEndpoint project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/derivation_endpoint/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the DerivationEndpoint project"s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/victorauthiat/derivation_endpoint/blob/master/CODE_OF_CONDUCT.md).

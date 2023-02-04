@@ -14,6 +14,14 @@ module DerivationEndpoint
       @options = options
     end
 
+    def derivation_path
+      DerivationEndpoint.config.encoder.call(method_value)
+    end
+
+    def redirection_url
+      DerivationEndpoint.config.decoder.call(derivation_path, options)
+    end
+
     def method_value
       object.public_send(method)
     end
@@ -23,14 +31,6 @@ module DerivationEndpoint
       final_url = prefix ? "#{base_url}/#{prefix}" : base_url
 
       "#{final_url}/#{derivation_path}"
-    end
-
-    def derivation_path
-      DerivationEndpoint.config.encoder.call(method_value)
-    end
-
-    def redirection_url
-      DerivationEndpoint.config.decoder.call(derivation_path, options)
     end
   end
 end
