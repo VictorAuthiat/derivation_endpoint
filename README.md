@@ -1,11 +1,7 @@
 Not deployed yet.
 # DerivationEndpoint
 
-[![Gem Version](https://badge.fury.io/rb/derivation_endpoint.svg)](https://badge.fury.io/rb/derivation_endpoint)
 [![Build Status](https://github.com/VictorAuthiat/derivation_endpoint/actions/workflows/ci.yml/badge.svg)](https://github.com/VictorAuthiat/derivation_endpoint/actions/workflows/ci.yml)
-[![Code Climate](https://codeclimate.com/github/VictorAuthiat/derivation_endpoint/badges/gpa.svg)](https://codeclimate.com/github/VictorAuthiat/derivation_endpoint)
-[![Test Coverage](https://codeclimate.com/github/VictorAuthiat/derivation_endpoint/badges/coverage.svg)](https://codeclimate.com/github/VictorAuthiat/derivation_endpoint/coverage)
-[![Issue Count](https://codeclimate.com/github/VictorAuthiat/derivation_endpoint/badges/issue_count.svg)](https://codeclimate.com/github/VictorAuthiat/derivation_endpoint)
 
 DerivationEndpoint is a gem that provides a Rack app to redirect from an url to another using custom strategies.
 This can be useful when you want to for example expose private files with a public URL.
