@@ -24,57 +24,48 @@ Or install it yourself as:
 
 ## Usage
 
-Initializer example with Shrine
+Here are the steps to follow to set up an endpoint derivation:
+
+**Configuration**
+
 ```ruby
 DerivationEndpoint.configure do |config|
   config.host    = "http://localhost:3000"
   config.prefix  = "derivation_endpoints"
-  config.encoder = ->(method_value) { method_value.id }
-  config.decoder = ->(path, options) { Shrine::UploadedFile.new(id: path, storage: options[:storage]).url }
+  config.encoder = proc {}
+  config.decoder = proc {}
 end
 ```
 
-Initializer example with CarrierWave:
-```ruby
-DerivationEndpoint.configure do |config|
-  ...
-end
-```
-
-Initializer example with Paperclip
-```ruby
-DerivationEndpoint.configure do |config|
-  ...
-end
-```
-
-Initializer example with ActiveStorage
-```ruby
-DerivationEndpoint.configure do |config|
-  ...
-end
-```
-
-Initializer example with Refile
-```ruby
-DerivationEndpoint.configure do |config|
-  ...
-end
-```
-
-*Routes:*
+**Mount the endpoint**
 ```ruby
 mount DerivationEndpoint::Derivation.new => DerivationEndpoint.derivation_path
 ```
 
-*Model:*
-```ruby
+**Add a derivation endpoint**
+```
 class Post < ApplicationRecord
   extend DerivationEndpoint
 
-  derivation_endpoint :file, prefix: "files", options: { storage: :store }
+  derivation_endpoint :file, options: { foo: :bar }
 end
 ```
+
+Two methods will now be available:
+
+ - `Post#file_derivation_url`
+ - `Post#file_redirection_url`
+
+In this example `file_derivation_url` returns the derivation endpoint URL.
+This endpoint redirects to the `file_redirection_url` using your encoder and decoder procs.
+
+## Examples
+
+- [Shrine](https://github.com/VictorAuthiat/derivation_endpoint/tree/master/docs/shrine.md)
+- [CarrierWave](https://github.com/VictorAuthiat/derivation_endpoint/tree/master/docs/carrierwave.md)
+- ActiveStorage (WIP)
+- PaperClip (WIP)
+- Refile (WIP)
 
 ## Development
 
